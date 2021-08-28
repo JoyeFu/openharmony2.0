@@ -1,0 +1,9 @@
+{
+  "root_path": "/home/czy/OpenHarmony",
+  "board": "hispark_pegasus",
+  "kernel": "liteos_m",
+  "product": "wifiiot_hispark_pegasus",
+  "product_path": "/home/czy/OpenHarmony/vendor/hisilicon/hispark_pegasus",
+  "device_path": "/home/czy/OpenHarmony/device/hisilicon/hispark_pegasus/sdk_liteos",
+  "patch_cache": null
+}
