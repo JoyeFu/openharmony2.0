@@ -10,23 +10,7 @@ build build.ninja: gn
 
 subninja toolchain.ninja
 
-build ActsBootstrapTest: phony obj/test/xts/acts/startup_lite/bootstrap_hal/ActsBootstrapTest.stamp
-build ActsCMSISTest: phony obj/test/xts/acts/kernel_lite/kernelcmsis_hal/ActsCMSISTest.stamp
-build ActsDfxFuncTest: phony obj/test/xts/acts/hiviewdfx_lite/hilog_hal/ActsDfxFuncTest.stamp
-build ActsKvStoreTest: phony obj/test/xts/acts/utils_lite/kv_store_hal/ActsKvStoreTest.stamp
-build ActsLwipTest: phony obj/test/xts/acts/communication_lite/lwip_hal/ActsLwipTest.stamp
-build ActsParameterTest: phony obj/test/xts/acts/startup_lite/syspara_hal/ActsParameterTest.stamp
-build ActsSamgrTest: phony obj/test/xts/acts/distributed_schedule_lite/system_ability_manager_hal/ActsSamgrTest.stamp
-build ActsSoftBusTest: phony obj/test/xts/acts/communication_lite/softbus_hal/ActsSoftBusTest.stamp
-build ActsUpdaterFuncTest: phony obj/test/xts/acts/update_lite/dupdate_hal/ActsUpdaterFuncTest.stamp
-build ActsUtilsFileTest: phony obj/test/xts/acts/utils_lite/file_hal/ActsUtilsFileTest.stamp
-build ActsWifiIotTest: phony obj/test/xts/acts/iot_hardware_lite/iot_controller_hal/ActsWifiIotTest.stamp
-build ActsWifiServiceTest: phony obj/test/xts/acts/communication_lite/wifiservice_hal/ActsWifiServiceTest.stamp
 build ConfigFiles: phony obj/foundation/distributedschedule/samgr_lite/ConfigFiles.stamp
-build acts: phony obj/test/xts/acts/build_lite/acts.stamp
-build acts_component: phony obj/test/xts/acts/build_lite/acts_component.stamp
-build acts_generate_module_data: phony obj/test/xts/acts/build_lite/acts_generate_module_data.stamp
-build acts_xdevice: phony obj/test/xts/acts/build_lite/acts_xdevice.stamp
 build app: phony obj/applications/sample/wifi-iot/app/app.stamp
 build authmanager: phony ./libs/libauthmanager.a
 build blackbox: phony ./libs/libblackbox.a
@@ -39,6 +23,7 @@ build cmsis: phony ./libs/libcmsis.a
 build discovery: phony ./libs/libdiscovery.a
 build discovery_ndk: phony obj/foundation/communication/softbus_lite/discovery_ndk.stamp
 build dump_static: phony ./libs/libdump_static.a
+build easy_wifi: phony ./libs/libeasy_wifi.a
 build file: phony obj/utils/native/lite/file/file.stamp
 build hal_file_static: phony ./libs/libhal_file_static.a
 build hal_iothardware: phony ./libs/libhal_iothardware.a
@@ -46,7 +31,7 @@ build hal_sysparam: phony ./libs/libhal_sysparam.a
 build hal_token_static: phony ./libs/libhal_token_static.a
 build hal_update_static: phony ./libs/libhal_update_static.a
 build hal_wifiaware: phony ./libs/libhal_wifiaware.a
-build hctest: phony ./libs/libhctest.a
+build helloworld: phony ./libs/libhelloworld.a
 build hidumper_mini: phony ./libs/libhidumper_mini.a
 build hievent_lite: phony ./libs/libhievent_lite.a
 build hilog_lite: phony ./libs/libhilog_lite.a
@@ -61,18 +46,6 @@ build iothardware_ndk: phony obj/base/iot_hardware/peripheral/iothardware_ndk.st
 build kal: phony obj/device/hisilicon/hispark_pegasus/hi3861_adapter/kal/kal.stamp
 build kv_store: phony obj/utils/native/lite/kv_store/kv_store.stamp
 build link: phony obj/domains/iot/link/link.stamp
-build module_ActsBootstrapTest: phony ./libs/libmodule_ActsBootstrapTest.a
-build module_ActsCMSISTest: phony ./libs/libmodule_ActsCMSISTest.a
-build module_ActsDfxFuncTest: phony ./libs/libmodule_ActsDfxFuncTest.a
-build module_ActsKvStoreTest: phony ./libs/libmodule_ActsKvStoreTest.a
-build module_ActsLwipTest: phony ./libs/libmodule_ActsLwipTest.a
-build module_ActsParameterTest: phony ./libs/libmodule_ActsParameterTest.a
-build module_ActsSamgrTest: phony ./libs/libmodule_ActsSamgrTest.a
-build module_ActsSoftBusTest: phony ./libs/libmodule_ActsSoftBusTest.a
-build module_ActsUpdaterFuncTest: phony ./libs/libmodule_ActsUpdaterFuncTest.a
-build module_ActsUtilsFileTest: phony ./libs/libmodule_ActsUtilsFileTest.a
-build module_ActsWifiIotTest: phony ./libs/libmodule_ActsWifiIotTest.a
-build module_ActsWifiServiceTest: phony ./libs/libmodule_ActsWifiServiceTest.a
 build native_file: phony ./libs/libnative_file.a
 build ndk: phony obj/build/lite/ndk.stamp
 build ohos: phony obj/build/lite/ohos.stamp
@@ -96,21 +69,26 @@ build test: phony obj/base/update/ota_lite/frameworks/test.stamp
 build token: phony obj/base/startup/syspara_lite/frameworks/token/token.stamp
 build token_notes: phony obj/base/startup/syspara_lite/frameworks/token/token_notes.stamp
 build token_static: phony ./libs/libtoken_static.a
-build tools: phony obj/test/xts/tools/lite/tools.stamp
 build trans_service: phony ./libs/libtrans_service.a
 build trans_service_ndk: phony obj/foundation/communication/softbus_lite/trans_service_ndk.stamp
 build update_api: phony obj/base/update/ota_lite/frameworks/update_api.stamp
 build utils_kv_store: phony ./libs/libutils_kv_store.a
 build utils_os_dump: phony obj/utils/native/lite/os_dump/utils_os_dump.stamp
 build wifi: phony obj/foundation/communication/wifi_lite/wifi.stamp
+build wifi_demo: phony ./libs/libwifi_demo.a
 build wifiaware: phony ./libs/libwifiaware.a
 build wifiiot_sdk: phony obj/device/hisilicon/hispark_pegasus/sdk_liteos/wifiiot_sdk.stamp
 build wifiservice: phony ./libs/libwifiservice.a
 build wifiservice_ndk: phony obj/device/hisilicon/hispark_pegasus/hi3861_adapter/hals/communication/wifi_lite/wifiservice/wifiservice_ndk.stamp
 build applications/sample/wifi-iot/app$:app: phony obj/applications/sample/wifi-iot/app/app.stamp
 build applications/sample/wifi-iot/app: phony obj/applications/sample/wifi-iot/app/app.stamp
+build applications/sample/wifi-iot/app/easy_wifi$:easy_wifi: phony ./libs/libeasy_wifi.a
+build applications/sample/wifi-iot/app/easy_wifi: phony ./libs/libeasy_wifi.a
+build applications/sample/wifi-iot/app/helloworld$:helloworld: phony ./libs/libhelloworld.a
+build applications/sample/wifi-iot/app/helloworld: phony ./libs/libhelloworld.a
 build applications/sample/wifi-iot/app/startup$:startup: phony obj/applications/sample/wifi-iot/app/startup/startup.stamp
 build applications/sample/wifi-iot/app/startup: phony obj/applications/sample/wifi-iot/app/startup/startup.stamp
+build applications/sample/wifi-iot/app/wifo_demo$:wifi_demo: phony ./libs/libwifi_demo.a
 build base/hiviewdfx/hievent_lite$:hievent_lite: phony ./libs/libhievent_lite.a
 build base/hiviewdfx/hievent_lite: phony ./libs/libhievent_lite.a
 build base/hiviewdfx/hilog_lite/frameworks/mini$:hilog_lite: phony ./libs/libhilog_lite.a
@@ -190,37 +168,6 @@ build foundation/distributedschedule/samgr_lite/samgr/adapter$:samgr_adapter: ph
 build foundation/distributedschedule/samgr_lite/samgr/source$:samgr_source: phony ./libs/libsamgr_source.a
 build prebuilts/lite/sysroot$:sysroot: phony obj/prebuilts/lite/sysroot/sysroot.stamp
 build prebuilts/lite/sysroot: phony obj/prebuilts/lite/sysroot/sysroot.stamp
-build test/xts/acts/build_lite$:acts: phony obj/test/xts/acts/build_lite/acts.stamp
-build test/xts/acts/build_lite$:acts_component: phony obj/test/xts/acts/build_lite/acts_component.stamp
-build test/xts/acts/build_lite$:acts_generate_module_data: phony obj/test/xts/acts/build_lite/acts_generate_module_data.stamp
-build test/xts/acts/build_lite$:acts_xdevice: phony obj/test/xts/acts/build_lite/acts_xdevice.stamp
-build test/xts/acts/communication_lite/lwip_hal$:ActsLwipTest: phony obj/test/xts/acts/communication_lite/lwip_hal/ActsLwipTest.stamp
-build test/xts/acts/communication_lite/lwip_hal$:module_ActsLwipTest: phony ./libs/libmodule_ActsLwipTest.a
-build test/xts/acts/communication_lite/softbus_hal$:ActsSoftBusTest: phony obj/test/xts/acts/communication_lite/softbus_hal/ActsSoftBusTest.stamp
-build test/xts/acts/communication_lite/softbus_hal$:module_ActsSoftBusTest: phony ./libs/libmodule_ActsSoftBusTest.a
-build test/xts/acts/communication_lite/wifiservice_hal$:ActsWifiServiceTest: phony obj/test/xts/acts/communication_lite/wifiservice_hal/ActsWifiServiceTest.stamp
-build test/xts/acts/communication_lite/wifiservice_hal$:module_ActsWifiServiceTest: phony ./libs/libmodule_ActsWifiServiceTest.a
-build test/xts/acts/distributed_schedule_lite/system_ability_manager_hal$:ActsSamgrTest: phony obj/test/xts/acts/distributed_schedule_lite/system_ability_manager_hal/ActsSamgrTest.stamp
-build test/xts/acts/distributed_schedule_lite/system_ability_manager_hal$:module_ActsSamgrTest: phony ./libs/libmodule_ActsSamgrTest.a
-build test/xts/acts/hiviewdfx_lite/hilog_hal$:ActsDfxFuncTest: phony obj/test/xts/acts/hiviewdfx_lite/hilog_hal/ActsDfxFuncTest.stamp
-build test/xts/acts/hiviewdfx_lite/hilog_hal$:module_ActsDfxFuncTest: phony ./libs/libmodule_ActsDfxFuncTest.a
-build test/xts/acts/iot_hardware_lite/iot_controller_hal$:ActsWifiIotTest: phony obj/test/xts/acts/iot_hardware_lite/iot_controller_hal/ActsWifiIotTest.stamp
-build test/xts/acts/iot_hardware_lite/iot_controller_hal$:module_ActsWifiIotTest: phony ./libs/libmodule_ActsWifiIotTest.a
-build test/xts/acts/kernel_lite/kernelcmsis_hal$:ActsCMSISTest: phony obj/test/xts/acts/kernel_lite/kernelcmsis_hal/ActsCMSISTest.stamp
-build test/xts/acts/kernel_lite/kernelcmsis_hal$:module_ActsCMSISTest: phony ./libs/libmodule_ActsCMSISTest.a
-build test/xts/acts/startup_lite/bootstrap_hal$:ActsBootstrapTest: phony obj/test/xts/acts/startup_lite/bootstrap_hal/ActsBootstrapTest.stamp
-build test/xts/acts/startup_lite/bootstrap_hal$:module_ActsBootstrapTest: phony ./libs/libmodule_ActsBootstrapTest.a
-build test/xts/acts/startup_lite/syspara_hal$:ActsParameterTest: phony obj/test/xts/acts/startup_lite/syspara_hal/ActsParameterTest.stamp
-build test/xts/acts/startup_lite/syspara_hal$:module_ActsParameterTest: phony ./libs/libmodule_ActsParameterTest.a
-build test/xts/acts/update_lite/dupdate_hal$:ActsUpdaterFuncTest: phony obj/test/xts/acts/update_lite/dupdate_hal/ActsUpdaterFuncTest.stamp
-build test/xts/acts/update_lite/dupdate_hal$:module_ActsUpdaterFuncTest: phony ./libs/libmodule_ActsUpdaterFuncTest.a
-build test/xts/acts/utils_lite/file_hal$:ActsUtilsFileTest: phony obj/test/xts/acts/utils_lite/file_hal/ActsUtilsFileTest.stamp
-build test/xts/acts/utils_lite/file_hal$:module_ActsUtilsFileTest: phony ./libs/libmodule_ActsUtilsFileTest.a
-build test/xts/acts/utils_lite/kv_store_hal$:ActsKvStoreTest: phony obj/test/xts/acts/utils_lite/kv_store_hal/ActsKvStoreTest.stamp
-build test/xts/acts/utils_lite/kv_store_hal$:module_ActsKvStoreTest: phony ./libs/libmodule_ActsKvStoreTest.a
-build test/xts/tools/lite$:tools: phony obj/test/xts/tools/lite/tools.stamp
-build test/xts/tools/lite/hctest$:hctest: phony ./libs/libhctest.a
-build test/xts/tools/lite/hctest: phony ./libs/libhctest.a
 build utils/native/lite/file$:file: phony obj/utils/native/lite/file/file.stamp
 build utils/native/lite/file: phony obj/utils/native/lite/file/file.stamp
 build utils/native/lite/file$:native_file: phony ./libs/libnative_file.a
@@ -236,7 +183,10 @@ build vendor/hisilicon/hispark_pegasus/hals/utils/token$:hal_token_static: phony
 
 build all: phony $
     obj/applications/sample/wifi-iot/app/app.stamp $
+    ./libs/libeasy_wifi.a $
+    ./libs/libhelloworld.a $
     obj/applications/sample/wifi-iot/app/startup/startup.stamp $
+    ./libs/libwifi_demo.a $
     ./libs/libhievent_lite.a $
     ./libs/libhilog_lite.a $
     obj/base/hiviewdfx/hilog_lite/frameworks/mini/hilog_lite_ndk.stamp $
@@ -299,36 +249,6 @@ build all: phony $
     ./libs/libsamgr_adapter.a $
     ./libs/libsamgr_source.a $
     obj/prebuilts/lite/sysroot/sysroot.stamp $
-    obj/test/xts/acts/build_lite/acts.stamp $
-    obj/test/xts/acts/build_lite/acts_component.stamp $
-    obj/test/xts/acts/build_lite/acts_generate_module_data.stamp $
-    obj/test/xts/acts/build_lite/acts_xdevice.stamp $
-    obj/test/xts/acts/communication_lite/lwip_hal/ActsLwipTest.stamp $
-    ./libs/libmodule_ActsLwipTest.a $
-    obj/test/xts/acts/communication_lite/softbus_hal/ActsSoftBusTest.stamp $
-    ./libs/libmodule_ActsSoftBusTest.a $
-    obj/test/xts/acts/communication_lite/wifiservice_hal/ActsWifiServiceTest.stamp $
-    ./libs/libmodule_ActsWifiServiceTest.a $
-    obj/test/xts/acts/distributed_schedule_lite/system_ability_manager_hal/ActsSamgrTest.stamp $
-    ./libs/libmodule_ActsSamgrTest.a $
-    obj/test/xts/acts/hiviewdfx_lite/hilog_hal/ActsDfxFuncTest.stamp $
-    ./libs/libmodule_ActsDfxFuncTest.a $
-    obj/test/xts/acts/iot_hardware_lite/iot_controller_hal/ActsWifiIotTest.stamp $
-    ./libs/libmodule_ActsWifiIotTest.a $
-    obj/test/xts/acts/kernel_lite/kernelcmsis_hal/ActsCMSISTest.stamp $
-    ./libs/libmodule_ActsCMSISTest.a $
-    obj/test/xts/acts/startup_lite/bootstrap_hal/ActsBootstrapTest.stamp $
-    ./libs/libmodule_ActsBootstrapTest.a $
-    obj/test/xts/acts/startup_lite/syspara_hal/ActsParameterTest.stamp $
-    ./libs/libmodule_ActsParameterTest.a $
-    obj/test/xts/acts/update_lite/dupdate_hal/ActsUpdaterFuncTest.stamp $
-    ./libs/libmodule_ActsUpdaterFuncTest.a $
-    obj/test/xts/acts/utils_lite/file_hal/ActsUtilsFileTest.stamp $
-    ./libs/libmodule_ActsUtilsFileTest.a $
-    obj/test/xts/acts/utils_lite/kv_store_hal/ActsKvStoreTest.stamp $
-    ./libs/libmodule_ActsKvStoreTest.a $
-    obj/test/xts/tools/lite/tools.stamp $
-    ./libs/libhctest.a $
     obj/utils/native/lite/file/file.stamp $
     ./libs/libnative_file.a $
     obj/utils/native/lite/kv_store/kv_store.stamp $

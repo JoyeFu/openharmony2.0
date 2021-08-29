@@ -33,8 +33,11 @@ rule copy
   command = cp -afd ${in} ${out}
   description = COPY ${in} ${out}
 
-build obj/applications/sample/wifi-iot/app/app.stamp: stamp obj/applications/sample/wifi-iot/app/startup/startup.stamp
+build obj/applications/sample/wifi-iot/app/app.stamp: stamp obj/applications/sample/wifi-iot/app/startup/startup.stamp ./libs/libhelloworld.a ./libs/libeasy_wifi.a ./libs/libwifi_demo.a
+subninja obj/applications/sample/wifi-iot/app/easy_wifi/easy_wifi.ninja
+subninja obj/applications/sample/wifi-iot/app/helloworld/helloworld.ninja
 subninja obj/applications/sample/wifi-iot/app/startup/startup.ninja
+subninja obj/applications/sample/wifi-iot/app/wifo_demo/wifi_demo.ninja
 subninja obj/base/hiviewdfx/hievent_lite/hievent_lite.ninja
 subninja obj/base/hiviewdfx/hilog_lite/frameworks/mini/hilog_lite.ninja
 build obj/base/hiviewdfx/hilog_lite/frameworks/mini/hilog_lite_ndk.stamp: stamp ./libs/libhilog_lite.a
@@ -59,7 +62,7 @@ build obj/base/update/ota_lite/frameworks/test.stamp: stamp
 build obj/base/update/ota_lite/frameworks/update_api.stamp: stamp
 subninja obj/base/update/ota_lite/frameworks/source/hota.ninja
 build obj/build/lite/ndk.stamp: stamp
-build obj/build/lite/ohos.stamp: stamp obj/applications/sample/wifi-iot/app/app.stamp obj/base/iot_hardware/peripheral/iothardware.stamp ./libs/libhilog_lite.a ./libs/libhievent_lite.a ./libs/libblackbox.a ./libs/libhidumper_mini.a obj/foundation/distributedschedule/samgr_lite/samgr.stamp obj/base/security/deviceauth/frameworks/deviceauth_lite/hichainsdk.stamp obj/base/security/huks/frameworks/huks_lite/huks_sdk.stamp ./libs/libbootstrap.a obj/base/startup/syspara_lite/frameworks/parameter/parameter.stamp obj/base/startup/syspara_lite/frameworks/token/token.stamp obj/foundation/communication/wifi_lite/wifi.stamp obj/foundation/communication/softbus_lite/softbus.stamp ./libs/libwifiaware.a obj/base/update/ota_lite/frameworks/ota_lite.stamp obj/domains/iot/link/link.stamp obj/utils/native/lite/file/file.stamp obj/utils/native/lite/kv_store/kv_store.stamp obj/utils/native/lite/os_dump/utils_os_dump.stamp obj/device/hisilicon/hispark_pegasus/sdk_liteos/wifiiot_sdk.stamp obj/test/xts/acts/build_lite/acts.stamp obj/test/xts/tools/lite/tools.stamp obj/device/hisilicon/hispark_pegasus/hispark_pegasus.stamp
+build obj/build/lite/ohos.stamp: stamp obj/applications/sample/wifi-iot/app/app.stamp obj/base/iot_hardware/peripheral/iothardware.stamp ./libs/libhilog_lite.a ./libs/libhievent_lite.a ./libs/libblackbox.a ./libs/libhidumper_mini.a obj/foundation/distributedschedule/samgr_lite/samgr.stamp obj/base/security/deviceauth/frameworks/deviceauth_lite/hichainsdk.stamp obj/base/security/huks/frameworks/huks_lite/huks_sdk.stamp ./libs/libbootstrap.a obj/base/startup/syspara_lite/frameworks/parameter/parameter.stamp obj/base/startup/syspara_lite/frameworks/token/token.stamp obj/foundation/communication/wifi_lite/wifi.stamp obj/foundation/communication/softbus_lite/softbus.stamp ./libs/libwifiaware.a obj/base/update/ota_lite/frameworks/ota_lite.stamp obj/domains/iot/link/link.stamp obj/utils/native/lite/file/file.stamp obj/utils/native/lite/kv_store/kv_store.stamp obj/utils/native/lite/os_dump/utils_os_dump.stamp obj/device/hisilicon/hispark_pegasus/sdk_liteos/wifiiot_sdk.stamp obj/device/hisilicon/hispark_pegasus/hispark_pegasus.stamp
 build obj/build/lite/prebuilts.stamp: stamp obj/prebuilts/lite/sysroot/sysroot.stamp
 build obj/build/lite/product.stamp: stamp obj/vendor/hisilicon/hispark_pegasus/hispark_pegasus.stamp
 build obj/build/lite/config/component/cJSON/cjson_ndk.stamp: stamp ./libs/libcjson_static.a
@@ -106,141 +109,6 @@ subninja obj/foundation/distributedschedule/samgr_lite/samgr/samgr.ninja
 subninja obj/foundation/distributedschedule/samgr_lite/samgr/adapter/samgr_adapter.ninja
 subninja obj/foundation/distributedschedule/samgr_lite/samgr/source/samgr_source.ninja
 build obj/prebuilts/lite/sysroot/sysroot.stamp: stamp
-rule __test_xts_acts_build_lite_acts___build_lite_toolchain_riscv32-unknown-elf__rule
-  command = /usr/bin/python3 ../../../test/xts/tools/lite/build/suite.py archive_suite --suite_path /home/czy/OpenHarmony/out/hispark_pegasus/wifiiot_hispark_pegasus/suites/acts --build_enabled true
-  description = ACTION //test/xts/acts/build_lite:acts(//build/lite/toolchain:riscv32-unknown-elf)
-  restat = 1
-
-build suites/acts.zip: __test_xts_acts_build_lite_acts___build_lite_toolchain_riscv32-unknown-elf__rule | ../../../test/xts/tools/lite/build/suite.py obj/test/xts/acts/build_lite/acts_component.stamp obj/test/xts/acts/build_lite/acts_generate_module_data.stamp obj/test/xts/acts/build_lite/acts_xdevice.stamp
-
-build obj/test/xts/acts/build_lite/acts.stamp: stamp suites/acts.zip
-build obj/test/xts/acts/build_lite/acts_component.stamp: stamp obj/test/xts/acts/communication_lite/lwip_hal/ActsLwipTest.stamp obj/test/xts/acts/communication_lite/softbus_hal/ActsSoftBusTest.stamp obj/test/xts/acts/communication_lite/wifiservice_hal/ActsWifiServiceTest.stamp obj/test/xts/acts/utils_lite/file_hal/ActsUtilsFileTest.stamp obj/test/xts/acts/startup_lite/syspara_hal/ActsParameterTest.stamp obj/test/xts/acts/iot_hardware_lite/iot_controller_hal/ActsWifiIotTest.stamp obj/test/xts/acts/kernel_lite/kernelcmsis_hal/ActsCMSISTest.stamp obj/test/xts/acts/utils_lite/kv_store_hal/ActsKvStoreTest.stamp obj/test/xts/acts/hiviewdfx_lite/hilog_hal/ActsDfxFuncTest.stamp obj/test/xts/acts/distributed_schedule_lite/system_ability_manager_hal/ActsSamgrTest.stamp obj/test/xts/acts/update_lite/dupdate_hal/ActsUpdaterFuncTest.stamp obj/test/xts/acts/startup_lite/bootstrap_hal/ActsBootstrapTest.stamp
-rule __test_xts_acts_build_lite_acts_generate_module_data___build_lite_toolchain_riscv32-unknown-elf__rule
-  command = /usr/bin/python3 ../../../test/xts/tools/lite/build/utils.py --method_name record_test_component_info --arguments out_dir=/home/czy/OpenHarmony/out/hispark_pegasus/wifiiot_hispark_pegasus/suites/acts/testcases\#version=OpenHarmony-ACTS-1.0.1
-  description = ACTION //test/xts/acts/build_lite:acts_generate_module_data(//build/lite/toolchain:riscv32-unknown-elf)
-  restat = 1
-
-build suites/acts/testcases/module_info.json: __test_xts_acts_build_lite_acts_generate_module_data___build_lite_toolchain_riscv32-unknown-elf__rule | ../../../test/xts/tools/lite/build/utils.py obj/test/xts/acts/build_lite/acts_component.stamp obj/test/xts/acts/build_lite/acts_xdevice.stamp
-
-build obj/test/xts/acts/build_lite/acts_generate_module_data.stamp: stamp suites/acts/testcases/module_info.json
-rule __test_xts_acts_build_lite_acts_xdevice___build_lite_toolchain_riscv32-unknown-elf__rule
-  command = /usr/bin/python3 ../../../test/xts/tools/lite/build/suite.py build_xdevice --project_dir /home/czy/OpenHarmony/test/xdevice --output_dirs /home/czy/OpenHarmony/out/hispark_pegasus/wifiiot_hispark_pegasus/suites/acts/tools,
-  description = ACTION //test/xts/acts/build_lite:acts_xdevice(//build/lite/toolchain:riscv32-unknown-elf)
-  restat = 1
-
-build suites/acts/tools: __test_xts_acts_build_lite_acts_xdevice___build_lite_toolchain_riscv32-unknown-elf__rule | ../../../test/xts/tools/lite/build/suite.py obj/build/lite/prebuilts.stamp
-
-build obj/test/xts/acts/build_lite/acts_xdevice.stamp: stamp suites/acts/tools
-rule __test_xts_acts_communication_lite_lwip_hal_ActsLwipTest___build_lite_toolchain_riscv32-unknown-elf__rule
-  command = /usr/bin/python3 ../../../test/xts/tools/lite/build/suite.py build_module --build_target_name ActsLwipTest --target_file /home/czy/OpenHarmony/out/hispark_pegasus/wifiiot_hispark_pegasus/libs/libmodule_ActsLwipTest.a --project_path /home/czy/OpenHarmony/test/xts/acts/communication_lite/lwip_hal --test_xml /home/czy/OpenHarmony/test/xts/acts/communication_lite/lwip_hal/Test.json --project_type hctest --suite_out_paths /home/czy/OpenHarmony/out/hispark_pegasus/wifiiot_hispark_pegasus/suites/acts/testcases/communication, --suite_filename libActsLwipTest.a --subsystem_name communication --hap_name , --hap_sign ,
-  description = ACTION //test/xts/acts/communication_lite/lwip_hal:ActsLwipTest(//build/lite/toolchain:riscv32-unknown-elf)
-  restat = 1
-
-build suites/acts/testcases/communication/libActsLwipTest.a: __test_xts_acts_communication_lite_lwip_hal_ActsLwipTest___build_lite_toolchain_riscv32-unknown-elf__rule | ../../../test/xts/tools/lite/build/suite.py ./libs/libmodule_ActsLwipTest.a ./libs/libhctest.a
-
-build obj/test/xts/acts/communication_lite/lwip_hal/ActsLwipTest.stamp: stamp suites/acts/testcases/communication/libActsLwipTest.a
-subninja obj/test/xts/acts/communication_lite/lwip_hal/module_ActsLwipTest.ninja
-rule __test_xts_acts_communication_lite_softbus_hal_ActsSoftBusTest___build_lite_toolchain_riscv32-unknown-elf__rule
-  command = /usr/bin/python3 ../../../test/xts/tools/lite/build/suite.py build_module --build_target_name ActsSoftBusTest --target_file /home/czy/OpenHarmony/out/hispark_pegasus/wifiiot_hispark_pegasus/libs/libmodule_ActsSoftBusTest.a --project_path /home/czy/OpenHarmony/test/xts/acts/communication_lite/softbus_hal --test_xml /home/czy/OpenHarmony/test/xts/acts/communication_lite/softbus_hal/Test.json --project_type hctest --suite_out_paths /home/czy/OpenHarmony/out/hispark_pegasus/wifiiot_hispark_pegasus/suites/acts/testcases/communication, --suite_filename libActsSoftBusTest.a --subsystem_name communication --hap_name , --hap_sign ,
-  description = ACTION //test/xts/acts/communication_lite/softbus_hal:ActsSoftBusTest(//build/lite/toolchain:riscv32-unknown-elf)
-  restat = 1
-
-build suites/acts/testcases/communication/libActsSoftBusTest.a: __test_xts_acts_communication_lite_softbus_hal_ActsSoftBusTest___build_lite_toolchain_riscv32-unknown-elf__rule | ../../../test/xts/tools/lite/build/suite.py obj/foundation/communication/softbus_lite/softbus.stamp ./libs/libmodule_ActsSoftBusTest.a ./libs/libhctest.a
-
-build obj/test/xts/acts/communication_lite/softbus_hal/ActsSoftBusTest.stamp: stamp suites/acts/testcases/communication/libActsSoftBusTest.a
-subninja obj/test/xts/acts/communication_lite/softbus_hal/module_ActsSoftBusTest.ninja
-rule __test_xts_acts_communication_lite_wifiservice_hal_ActsWifiServiceTest___build_lite_toolchain_riscv32-unknown-elf__rule
-  command = /usr/bin/python3 ../../../test/xts/tools/lite/build/suite.py build_module --build_target_name ActsWifiServiceTest --target_file /home/czy/OpenHarmony/out/hispark_pegasus/wifiiot_hispark_pegasus/libs/libmodule_ActsWifiServiceTest.a --project_path /home/czy/OpenHarmony/test/xts/acts/communication_lite/wifiservice_hal --test_xml /home/czy/OpenHarmony/test/xts/acts/communication_lite/wifiservice_hal/Test.json --project_type hctest --suite_out_paths /home/czy/OpenHarmony/out/hispark_pegasus/wifiiot_hispark_pegasus/suites/acts/testcases/communication, --suite_filename libActsWifiServiceTest.a --subsystem_name communication --hap_name , --hap_sign ,
-  description = ACTION //test/xts/acts/communication_lite/wifiservice_hal:ActsWifiServiceTest(//build/lite/toolchain:riscv32-unknown-elf)
-  restat = 1
-
-build suites/acts/testcases/communication/libActsWifiServiceTest.a: __test_xts_acts_communication_lite_wifiservice_hal_ActsWifiServiceTest___build_lite_toolchain_riscv32-unknown-elf__rule | ../../../test/xts/tools/lite/build/suite.py ./libs/libmodule_ActsWifiServiceTest.a ./libs/libhctest.a
-
-build obj/test/xts/acts/communication_lite/wifiservice_hal/ActsWifiServiceTest.stamp: stamp suites/acts/testcases/communication/libActsWifiServiceTest.a
-subninja obj/test/xts/acts/communication_lite/wifiservice_hal/module_ActsWifiServiceTest.ninja
-rule __test_xts_acts_distributed_schedule_lite_system_ability_manager_hal_ActsSamgrTest___build_lite_toolchain_riscv32-unknown-elf__rule
-  command = /usr/bin/python3 ../../../test/xts/tools/lite/build/suite.py build_module --build_target_name ActsSamgrTest --target_file /home/czy/OpenHarmony/out/hispark_pegasus/wifiiot_hispark_pegasus/libs/libmodule_ActsSamgrTest.a --project_path /home/czy/OpenHarmony/test/xts/acts/distributed_schedule_lite/system_ability_manager_hal --test_xml /home/czy/OpenHarmony/test/xts/acts/distributed_schedule_lite/system_ability_manager_hal/Test.json --project_type hctest --suite_out_paths /home/czy/OpenHarmony/out/hispark_pegasus/wifiiot_hispark_pegasus/suites/acts/testcases/distributed_schedule, --suite_filename libActsSamgrTest.a --subsystem_name distributed_schedule --hap_name , --hap_sign ,
-  description = ACTION //test/xts/acts/distributed_schedule_lite/system_ability_manager_hal:ActsSamgrTest(//build/lite/toolchain:riscv32-unknown-elf)
-  restat = 1
-
-build suites/acts/testcases/distributed_schedule/libActsSamgrTest.a: __test_xts_acts_distributed_schedule_lite_system_ability_manager_hal_ActsSamgrTest___build_lite_toolchain_riscv32-unknown-elf__rule | ../../../test/xts/tools/lite/build/suite.py ./libs/libmodule_ActsSamgrTest.a ./libs/libhctest.a
-
-build obj/test/xts/acts/distributed_schedule_lite/system_ability_manager_hal/ActsSamgrTest.stamp: stamp suites/acts/testcases/distributed_schedule/libActsSamgrTest.a
-subninja obj/test/xts/acts/distributed_schedule_lite/system_ability_manager_hal/module_ActsSamgrTest.ninja
-rule __test_xts_acts_hiviewdfx_lite_hilog_hal_ActsDfxFuncTest___build_lite_toolchain_riscv32-unknown-elf__rule
-  command = /usr/bin/python3 ../../../test/xts/tools/lite/build/suite.py build_module --build_target_name ActsDfxFuncTest --target_file /home/czy/OpenHarmony/out/hispark_pegasus/wifiiot_hispark_pegasus/libs/libmodule_ActsDfxFuncTest.a --project_path /home/czy/OpenHarmony/test/xts/acts/hiviewdfx_lite/hilog_hal --test_xml /home/czy/OpenHarmony/test/xts/acts/hiviewdfx_lite/hilog_hal/Test.json --project_type hctest --suite_out_paths /home/czy/OpenHarmony/out/hispark_pegasus/wifiiot_hispark_pegasus/suites/acts/testcases/hiviewdfx, --suite_filename libActsDfxFuncTest.a --subsystem_name hiviewdfx --hap_name , --hap_sign ,
-  description = ACTION //test/xts/acts/hiviewdfx_lite/hilog_hal:ActsDfxFuncTest(//build/lite/toolchain:riscv32-unknown-elf)
-  restat = 1
-
-build suites/acts/testcases/hiviewdfx/libActsDfxFuncTest.a: __test_xts_acts_hiviewdfx_lite_hilog_hal_ActsDfxFuncTest___build_lite_toolchain_riscv32-unknown-elf__rule | ../../../test/xts/tools/lite/build/suite.py ./libs/libmodule_ActsDfxFuncTest.a ./libs/libhctest.a
-
-build obj/test/xts/acts/hiviewdfx_lite/hilog_hal/ActsDfxFuncTest.stamp: stamp suites/acts/testcases/hiviewdfx/libActsDfxFuncTest.a
-subninja obj/test/xts/acts/hiviewdfx_lite/hilog_hal/module_ActsDfxFuncTest.ninja
-rule __test_xts_acts_iot_hardware_lite_iot_controller_hal_ActsWifiIotTest___build_lite_toolchain_riscv32-unknown-elf__rule
-  command = /usr/bin/python3 ../../../test/xts/tools/lite/build/suite.py build_module --build_target_name ActsWifiIotTest --target_file /home/czy/OpenHarmony/out/hispark_pegasus/wifiiot_hispark_pegasus/libs/libmodule_ActsWifiIotTest.a --project_path /home/czy/OpenHarmony/test/xts/acts/iot_hardware_lite/iot_controller_hal --test_xml /home/czy/OpenHarmony/test/xts/acts/iot_hardware_lite/iot_controller_hal/Test.json --project_type hctest --suite_out_paths /home/czy/OpenHarmony/out/hispark_pegasus/wifiiot_hispark_pegasus/suites/acts/testcases/iot_hardware, --suite_filename libActsWifiIotTest.a --subsystem_name iot_hardware --hap_name , --hap_sign ,
-  description = ACTION //test/xts/acts/iot_hardware_lite/iot_controller_hal:ActsWifiIotTest(//build/lite/toolchain:riscv32-unknown-elf)
-  restat = 1
-
-build suites/acts/testcases/iot_hardware/libActsWifiIotTest.a: __test_xts_acts_iot_hardware_lite_iot_controller_hal_ActsWifiIotTest___build_lite_toolchain_riscv32-unknown-elf__rule | ../../../test/xts/tools/lite/build/suite.py ./libs/libmodule_ActsWifiIotTest.a ./libs/libhctest.a
-
-build obj/test/xts/acts/iot_hardware_lite/iot_controller_hal/ActsWifiIotTest.stamp: stamp suites/acts/testcases/iot_hardware/libActsWifiIotTest.a
-subninja obj/test/xts/acts/iot_hardware_lite/iot_controller_hal/module_ActsWifiIotTest.ninja
-rule __test_xts_acts_kernel_lite_kernelcmsis_hal_ActsCMSISTest___build_lite_toolchain_riscv32-unknown-elf__rule
-  command = /usr/bin/python3 ../../../test/xts/tools/lite/build/suite.py build_module --build_target_name ActsCMSISTest --target_file /home/czy/OpenHarmony/out/hispark_pegasus/wifiiot_hispark_pegasus/libs/libmodule_ActsCMSISTest.a --project_path /home/czy/OpenHarmony/test/xts/acts/kernel_lite/kernelcmsis_hal --test_xml /home/czy/OpenHarmony/test/xts/acts/kernel_lite/kernelcmsis_hal/Test.json --project_type hctest --suite_out_paths /home/czy/OpenHarmony/out/hispark_pegasus/wifiiot_hispark_pegasus/suites/acts/testcases/kernel, --suite_filename libActsCMSISTest.a --subsystem_name kernel --hap_name , --hap_sign ,
-  description = ACTION //test/xts/acts/kernel_lite/kernelcmsis_hal:ActsCMSISTest(//build/lite/toolchain:riscv32-unknown-elf)
-  restat = 1
-
-build suites/acts/testcases/kernel/libActsCMSISTest.a: __test_xts_acts_kernel_lite_kernelcmsis_hal_ActsCMSISTest___build_lite_toolchain_riscv32-unknown-elf__rule | ../../../test/xts/tools/lite/build/suite.py ./libs/libmodule_ActsCMSISTest.a ./libs/libhctest.a
-
-build obj/test/xts/acts/kernel_lite/kernelcmsis_hal/ActsCMSISTest.stamp: stamp suites/acts/testcases/kernel/libActsCMSISTest.a
-subninja obj/test/xts/acts/kernel_lite/kernelcmsis_hal/module_ActsCMSISTest.ninja
-rule __test_xts_acts_startup_lite_bootstrap_hal_ActsBootstrapTest___build_lite_toolchain_riscv32-unknown-elf__rule
-  command = /usr/bin/python3 ../../../test/xts/tools/lite/build/suite.py build_module --build_target_name ActsBootstrapTest --target_file /home/czy/OpenHarmony/out/hispark_pegasus/wifiiot_hispark_pegasus/libs/libmodule_ActsBootstrapTest.a --project_path /home/czy/OpenHarmony/test/xts/acts/startup_lite/bootstrap_hal --test_xml /home/czy/OpenHarmony/test/xts/acts/startup_lite/bootstrap_hal/Test.json --project_type hctest --suite_out_paths /home/czy/OpenHarmony/out/hispark_pegasus/wifiiot_hispark_pegasus/suites/acts/testcases/startup, --suite_filename libActsBootstrapTest.a --subsystem_name startup --hap_name , --hap_sign ,
-  description = ACTION //test/xts/acts/startup_lite/bootstrap_hal:ActsBootstrapTest(//build/lite/toolchain:riscv32-unknown-elf)
-  restat = 1
-
-build suites/acts/testcases/startup/libActsBootstrapTest.a: __test_xts_acts_startup_lite_bootstrap_hal_ActsBootstrapTest___build_lite_toolchain_riscv32-unknown-elf__rule | ../../../test/xts/tools/lite/build/suite.py ./libs/libmodule_ActsBootstrapTest.a ./libs/libhctest.a
-
-build obj/test/xts/acts/startup_lite/bootstrap_hal/ActsBootstrapTest.stamp: stamp suites/acts/testcases/startup/libActsBootstrapTest.a
-subninja obj/test/xts/acts/startup_lite/bootstrap_hal/module_ActsBootstrapTest.ninja
-rule __test_xts_acts_startup_lite_syspara_hal_ActsParameterTest___build_lite_toolchain_riscv32-unknown-elf__rule
-  command = /usr/bin/python3 ../../../test/xts/tools/lite/build/suite.py build_module --build_target_name ActsParameterTest --target_file /home/czy/OpenHarmony/out/hispark_pegasus/wifiiot_hispark_pegasus/libs/libmodule_ActsParameterTest.a --project_path /home/czy/OpenHarmony/test/xts/acts/startup_lite/syspara_hal --test_xml /home/czy/OpenHarmony/test/xts/acts/startup_lite/syspara_hal/Test.json --project_type hctest --suite_out_paths /home/czy/OpenHarmony/out/hispark_pegasus/wifiiot_hispark_pegasus/suites/acts/testcases/startup, --suite_filename libActsParameterTest.a --subsystem_name startup --hap_name , --hap_sign ,
-  description = ACTION //test/xts/acts/startup_lite/syspara_hal:ActsParameterTest(//build/lite/toolchain:riscv32-unknown-elf)
-  restat = 1
-
-build suites/acts/testcases/startup/libActsParameterTest.a: __test_xts_acts_startup_lite_syspara_hal_ActsParameterTest___build_lite_toolchain_riscv32-unknown-elf__rule | ../../../test/xts/tools/lite/build/suite.py ./libs/libmodule_ActsParameterTest.a ./libs/libhctest.a
-
-build obj/test/xts/acts/startup_lite/syspara_hal/ActsParameterTest.stamp: stamp suites/acts/testcases/startup/libActsParameterTest.a
-subninja obj/test/xts/acts/startup_lite/syspara_hal/module_ActsParameterTest.ninja
-rule __test_xts_acts_update_lite_dupdate_hal_ActsUpdaterFuncTest___build_lite_toolchain_riscv32-unknown-elf__rule
-  command = /usr/bin/python3 ../../../test/xts/tools/lite/build/suite.py build_module --build_target_name ActsUpdaterFuncTest --target_file /home/czy/OpenHarmony/out/hispark_pegasus/wifiiot_hispark_pegasus/libs/libmodule_ActsUpdaterFuncTest.a --project_path /home/czy/OpenHarmony/test/xts/acts/update_lite/dupdate_hal --test_xml /home/czy/OpenHarmony/test/xts/acts/update_lite/dupdate_hal/Test.json --project_type hctest --suite_out_paths /home/czy/OpenHarmony/out/hispark_pegasus/wifiiot_hispark_pegasus/suites/acts/testcases/update, --suite_filename libActsUpdaterFuncTest.a --subsystem_name update --hap_name , --hap_sign ,
-  description = ACTION //test/xts/acts/update_lite/dupdate_hal:ActsUpdaterFuncTest(//build/lite/toolchain:riscv32-unknown-elf)
-  restat = 1
-
-build suites/acts/testcases/update/libActsUpdaterFuncTest.a: __test_xts_acts_update_lite_dupdate_hal_ActsUpdaterFuncTest___build_lite_toolchain_riscv32-unknown-elf__rule | ../../../test/xts/tools/lite/build/suite.py ./libs/libmodule_ActsUpdaterFuncTest.a ./libs/libhctest.a
-
-build obj/test/xts/acts/update_lite/dupdate_hal/ActsUpdaterFuncTest.stamp: stamp suites/acts/testcases/update/libActsUpdaterFuncTest.a
-subninja obj/test/xts/acts/update_lite/dupdate_hal/module_ActsUpdaterFuncTest.ninja
-rule __test_xts_acts_utils_lite_file_hal_ActsUtilsFileTest___build_lite_toolchain_riscv32-unknown-elf__rule
-  command = /usr/bin/python3 ../../../test/xts/tools/lite/build/suite.py build_module --build_target_name ActsUtilsFileTest --target_file /home/czy/OpenHarmony/out/hispark_pegasus/wifiiot_hispark_pegasus/libs/libmodule_ActsUtilsFileTest.a --project_path /home/czy/OpenHarmony/test/xts/acts/utils_lite/file_hal --test_xml /home/czy/OpenHarmony/test/xts/acts/utils_lite/file_hal/Test.json --project_type hctest --suite_out_paths /home/czy/OpenHarmony/out/hispark_pegasus/wifiiot_hispark_pegasus/suites/acts/testcases/utils, --suite_filename libActsUtilsFileTest.a --subsystem_name utils --hap_name , --hap_sign ,
-  description = ACTION //test/xts/acts/utils_lite/file_hal:ActsUtilsFileTest(//build/lite/toolchain:riscv32-unknown-elf)
-  restat = 1
-
-build suites/acts/testcases/utils/libActsUtilsFileTest.a: __test_xts_acts_utils_lite_file_hal_ActsUtilsFileTest___build_lite_toolchain_riscv32-unknown-elf__rule | ../../../test/xts/tools/lite/build/suite.py ./libs/libmodule_ActsUtilsFileTest.a ./libs/libhctest.a
-
-build obj/test/xts/acts/utils_lite/file_hal/ActsUtilsFileTest.stamp: stamp suites/acts/testcases/utils/libActsUtilsFileTest.a
-subninja obj/test/xts/acts/utils_lite/file_hal/module_ActsUtilsFileTest.ninja
-rule __test_xts_acts_utils_lite_kv_store_hal_ActsKvStoreTest___build_lite_toolchain_riscv32-unknown-elf__rule
-  command = /usr/bin/python3 ../../../test/xts/tools/lite/build/suite.py build_module --build_target_name ActsKvStoreTest --target_file /home/czy/OpenHarmony/out/hispark_pegasus/wifiiot_hispark_pegasus/libs/libmodule_ActsKvStoreTest.a --project_path /home/czy/OpenHarmony/test/xts/acts/utils_lite/kv_store_hal --test_xml /home/czy/OpenHarmony/test/xts/acts/utils_lite/kv_store_hal/Test.json --project_type hctest --suite_out_paths /home/czy/OpenHarmony/out/hispark_pegasus/wifiiot_hispark_pegasus/suites/acts/testcases/utils, --suite_filename libActsKvStoreTest.a --subsystem_name utils --hap_name , --hap_sign ,
-  description = ACTION //test/xts/acts/utils_lite/kv_store_hal:ActsKvStoreTest(//build/lite/toolchain:riscv32-unknown-elf)
-  restat = 1
-
-build suites/acts/testcases/utils/libActsKvStoreTest.a: __test_xts_acts_utils_lite_kv_store_hal_ActsKvStoreTest___build_lite_toolchain_riscv32-unknown-elf__rule | ../../../test/xts/tools/lite/build/suite.py ./libs/libmodule_ActsKvStoreTest.a ./libs/libhctest.a
-
-build obj/test/xts/acts/utils_lite/kv_store_hal/ActsKvStoreTest.stamp: stamp suites/acts/testcases/utils/libActsKvStoreTest.a
-subninja obj/test/xts/acts/utils_lite/kv_store_hal/module_ActsKvStoreTest.ninja
-build obj/test/xts/tools/lite/tools.stamp: stamp ./libs/libhctest.a
-subninja obj/test/xts/tools/lite/hctest/hctest.ninja
 build obj/utils/native/lite/file/file.stamp: stamp ./libs/libnative_file.a
 subninja obj/utils/native/lite/file/native_file.ninja
 build obj/utils/native/lite/kv_store/kv_store.stamp: stamp ./libs/libutils_kv_store.a

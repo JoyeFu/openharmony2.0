@@ -16,5 +16,9 @@ import("//build/lite/config/component/lite_component.gni")
 lite_component("app") {
     features = [
         "startup",
+        "helloworld:helloworld",
+        "easy_wifi:easy_wifi",
+        "wifo_demo:wifi_demo",
+        #"iothardware:net_demo"
     ]
 }
