@@ -34,9 +34,8 @@
 
 #include "wifi_connecter.h"
 
-static void WifiConnectTask(void *arg)
+static void WifiConnectTask(void)
 {
-    (void)arg;
 
     osDelay(10);
     printf("enter wifi task\n");
@@ -57,21 +56,5 @@ static void WifiConnectTask(void *arg)
     // DisconnectWithHotspot(netId);
 }
 
-static void WifiConnectDemo(void)
-{
-    osThreadAttr_t attr;
 
-    attr.name = "WifiConnectTask";
-    attr.attr_bits = 0U;
-    attr.cb_mem = NULL;
-    attr.cb_size = 0U;
-    attr.stack_mem = NULL;
-    attr.stack_size = 10240;
-    attr.priority = osPriorityNormal;
-
-    if (osThreadNew(WifiConnectTask, NULL, &attr) == NULL) {
-        printf("[WifiConnectDemo] Falied to create WifiConnectTask!\n");
-    }
-}
-
-SYS_RUN(WifiConnectDemo);
+SYS_RUN(WifiConnectTask);

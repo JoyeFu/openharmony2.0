@@ -1,0 +1,10 @@
+static_library("wifi_lite") {
+    sources = [
+        "wifi_lite.c",
+    ]
+
+    include_dirs = [
+        "//utils/native/lite/include",
+        "//foundation/communication/wifi_lite/interfaces/wifiservice",
+    ]
+}

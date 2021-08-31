@@ -17,9 +17,10 @@ lite_component("app") {
     features = [
         "startup",
         "helloworld:helloworld",
+        #"wifi_lite:wifi_lite",
         "easy_wifi:easy_wifi",
-        #"wifo_demo:wifi_demo",
         "softbus:softbus_demo",
+        "wifo_demo:wifi_demo",
         #"iothardware:net_demo"
     ]
 }
