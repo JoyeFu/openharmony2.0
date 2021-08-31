@@ -48,13 +48,13 @@ static void WifiConnectTask(void *arg)
 
     int netId = ConnectToHotspot(&apConfig);
 
-    int timeout = 60;
-    while (timeout--) {
-        printf("After %d seconds I will disconnect with AP!\r\n", timeout);
-        osDelay(100);
-    }
+    // int timeout = 60;
+    // while (timeout--) {
+    //     printf("After %d seconds I will disconnect with AP!\r\n", timeout);
+    //     osDelay(100);
+    // }
 
-    DisconnectWithHotspot(netId);
+    // DisconnectWithHotspot(netId);
 }
 
 static void WifiConnectDemo(void)

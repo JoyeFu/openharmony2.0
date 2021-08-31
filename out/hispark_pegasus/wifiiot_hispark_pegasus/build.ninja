@@ -61,6 +61,7 @@ build samgr_lite_ndk: phony obj/foundation/distributedschedule/samgr_lite/samgr_
 build samgr_source: phony ./libs/libsamgr_source.a
 build sdk: phony obj/device/hisilicon/hispark_pegasus/sdk_liteos/sdk.stamp
 build softbus: phony obj/foundation/communication/softbus_lite/softbus.stamp
+build softbus_demo: phony ./libs/libsoftbus_demo.a
 build softbus_lite_ndk: phony obj/foundation/communication/softbus_lite/softbus_lite_ndk.stamp
 build startup: phony obj/applications/sample/wifi-iot/app/startup/startup.stamp
 build sysparam: phony ./libs/libsysparam.a
@@ -75,7 +76,6 @@ build update_api: phony obj/base/update/ota_lite/frameworks/update_api.stamp
 build utils_kv_store: phony ./libs/libutils_kv_store.a
 build utils_os_dump: phony obj/utils/native/lite/os_dump/utils_os_dump.stamp
 build wifi: phony obj/foundation/communication/wifi_lite/wifi.stamp
-build wifi_demo: phony ./libs/libwifi_demo.a
 build wifiaware: phony ./libs/libwifiaware.a
 build wifiiot_sdk: phony obj/device/hisilicon/hispark_pegasus/sdk_liteos/wifiiot_sdk.stamp
 build wifiservice: phony ./libs/libwifiservice.a
@@ -86,9 +86,9 @@ build applications/sample/wifi-iot/app/easy_wifi$:easy_wifi: phony ./libs/libeas
 build applications/sample/wifi-iot/app/easy_wifi: phony ./libs/libeasy_wifi.a
 build applications/sample/wifi-iot/app/helloworld$:helloworld: phony ./libs/libhelloworld.a
 build applications/sample/wifi-iot/app/helloworld: phony ./libs/libhelloworld.a
+build applications/sample/wifi-iot/app/softbus$:softbus_demo: phony ./libs/libsoftbus_demo.a
 build applications/sample/wifi-iot/app/startup$:startup: phony obj/applications/sample/wifi-iot/app/startup/startup.stamp
 build applications/sample/wifi-iot/app/startup: phony obj/applications/sample/wifi-iot/app/startup/startup.stamp
-build applications/sample/wifi-iot/app/wifo_demo$:wifi_demo: phony ./libs/libwifi_demo.a
 build base/hiviewdfx/hievent_lite$:hievent_lite: phony ./libs/libhievent_lite.a
 build base/hiviewdfx/hievent_lite: phony ./libs/libhievent_lite.a
 build base/hiviewdfx/hilog_lite/frameworks/mini$:hilog_lite: phony ./libs/libhilog_lite.a
@@ -185,8 +185,8 @@ build all: phony $
     obj/applications/sample/wifi-iot/app/app.stamp $
     ./libs/libeasy_wifi.a $
     ./libs/libhelloworld.a $
+    ./libs/libsoftbus_demo.a $
     obj/applications/sample/wifi-iot/app/startup/startup.stamp $
-    ./libs/libwifi_demo.a $
     ./libs/libhievent_lite.a $
     ./libs/libhilog_lite.a $
     obj/base/hiviewdfx/hilog_lite/frameworks/mini/hilog_lite_ndk.stamp $
