@@ -41,19 +41,11 @@ static void WifiConnectTask(void)
     printf("enter wifi task\n");
     // setup your AP params
     WifiDeviceConfig apConfig = {0};
-    strcpy(apConfig.ssid, "CZH");
-    strcpy(apConfig.preSharedKey, "CZHCZYZX");
+    strcpy(apConfig.ssid, "811cluster");
+    strcpy(apConfig.preSharedKey, "hitedu811");
     apConfig.securityType = WIFI_SEC_TYPE_PSK;
 
     int netId = ConnectToHotspot(&apConfig);
-
-    // int timeout = 60;
-    // while (timeout--) {
-    //     printf("After %d seconds I will disconnect with AP!\r\n", timeout);
-    //     osDelay(100);
-    // }
-
-    // DisconnectWithHotspot(netId);
 }
 
 

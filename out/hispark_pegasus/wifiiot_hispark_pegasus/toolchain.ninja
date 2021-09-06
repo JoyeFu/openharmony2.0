@@ -33,7 +33,7 @@ rule copy
   command = cp -afd ${in} ${out}
   description = COPY ${in} ${out}
 
-build obj/applications/sample/wifi-iot/app/app.stamp: stamp obj/applications/sample/wifi-iot/app/startup/startup.stamp ./libs/libhelloworld.a ./libs/libeasy_wifi.a ./libs/libsoftbus_demo.a ./libs/libwifi_demo.a
+build obj/applications/sample/wifi-iot/app/app.stamp: stamp obj/applications/sample/wifi-iot/app/startup/startup.stamp ./libs/libhelloworld.a ./libs/libeasy_wifi.a ./libs/libwifi_demo.a ./libs/libsoftbus_demo.a
 subninja obj/applications/sample/wifi-iot/app/easy_wifi/easy_wifi.ninja
 subninja obj/applications/sample/wifi-iot/app/helloworld/helloworld.ninja
 subninja obj/applications/sample/wifi-iot/app/softbus/softbus_demo.ninja

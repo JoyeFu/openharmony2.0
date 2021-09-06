@@ -19,8 +19,8 @@ lite_component("app") {
         "helloworld:helloworld",
         #"wifi_lite:wifi_lite",
         "easy_wifi:easy_wifi",
-        "softbus:softbus_demo",
         "wifo_demo:wifi_demo",
+        "softbus:softbus_demo",
         #"iothardware:net_demo"
     ]
 }
